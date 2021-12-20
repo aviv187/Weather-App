@@ -1,0 +1,227 @@
+.weather_box {
+  margin: auto;
+  width: 60vw;
+  padding: 30px 40px;
+  border-radius: 10px;
+  min-width: 350px;
+  color:#fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.weather_box_start {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self:flex-start;
+  width:100%;
+}
+
+.city_name_and_temp {
+  text-align: start;
+  font-size: 16px;
+  font-weight: bold;
+}
+.city_name_and_temp .name {
+  font-size:36px;
+}
+
+img.heart_icon {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.current_weather {
+  margin: 80px 0;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 192px;
+  padding: 0 0 20px 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 200px;
+  justify-content: center;
+}
+
+.current_weather .temp {
+  font-size:96px;
+}
+.current_weather .phrase {
+  margin-left:10px;
+  font-size:18px;
+}
+
+.icon_1 {
+  background-image:url(../svg/icons/1.svg);
+}
+.icon_2 {
+  background-image:url(../svg/icons/2.svg);
+}
+.icon_3 {
+  background-image:url(../svg/icons/3.svg);
+}
+.icon_4 {
+  background-image:url(../svg/icons/4.svg);
+}
+.icon_5 {
+  background-image:url(../svg/icons/5.svg);
+}
+.icon_6 {
+  background-image:url(../svg/icons/6.svg);
+}
+.icon_7 {
+  background-image:url(../svg/icons/7.svg);
+}
+.icon_8 {
+  background-image:url(../svg/icons/8.svg);
+}
+.icon_11 {
+  background-image:url(../svg/icons/11.svg);
+}
+.icon_12 {
+  background-image:url(../svg/icons/12.svg);
+}
+.icon_13 {
+  background-image:url(../svg/icons/13.svg);
+}
+.icon_14 {
+  background-image:url(../svg/icons/14.svg);
+}
+.icon_15 {
+  background-image:url(../svg/icons/15.svg);
+}
+.icon_16 {
+  background-image:url(../svg/icons/16.svg);
+}
+.icon_17 {
+  background-image:url(../svg/icons/17.svg);
+}
+.icon_18 {
+  background-image:url(../svg/icons/18.svg);
+}
+.icon_19 {
+  background-image:url(../svg/icons/19.svg);
+}
+.icon_20 {
+  background-image:url(../svg/icons/20.svg);
+}
+.icon_21 {
+  background-image:url(../svg/icons/21.svg);
+}
+.icon_22 {
+  background-image:url(../svg/icons/22.svg);
+}
+.icon_23 {
+  background-image:url(../svg/icons/23.svg);
+}
+.icon_24 {
+  background-image:url(../svg/icons/24.svg);
+}
+.icon_25 {
+  background-image:url(../svg/icons/25.svg);
+}
+.icon_26 {
+  background-image:url(../svg/icons/26.svg);
+}
+.icon_29 {
+  background-image:url(../svg/icons/29.svg);
+}
+.icon_30 {
+  background-image:url(../svg/icons/30.svg);
+}
+.icon_31 {
+  background-image:url(../svg/icons/31.svg);
+}
+.icon_32 {
+  background-image:url(../svg/icons/32.svg);
+}
+.icon_33 {
+  background-image:url(../svg/icons/33.svg);
+}
+.icon_34 {
+  background-image:url(../svg/icons/34.svg);
+}
+.icon_35 {
+  background-image:url(../svg/icons/35.svg);
+}
+.icon_36 {
+  background-image:url(../svg/icons/36.svg);
+}
+.icon_37 {
+  background-image:url(../svg/icons/37.svg);
+}
+.icon_38 {
+  background-image:url(../svg/icons/38.svg);
+}
+.icon_39 {
+  background-image:url(../svg/icons/39.svg);
+}
+.icon_40 {
+  background-image:url(../svg/icons/40.svg);
+}
+.icon_41 {
+  background-image:url(../svg/icons/41.svg);
+}
+.icon_42 {
+  background-image:url(../svg/icons/42.svg);
+}
+.icon_43 {
+  background-image:url(../svg/icons/43.svg);
+}
+.icon_44 {
+  background-image:url(../svg/icons/44.svg);
+}
+
+.five_days_weather {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 10px;
+}
+.day_weather {
+  padding: 5px;
+  /* border: 1px solid; */
+  border-radius: 5px;
+  height: 120px;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-weight: bolder;
+  background-color: rgba(0, 0, 0, 0.4);
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 10px 0;
+  box-sizing: border-box;
+  background-size: 42px;
+  font-weight: normal;
+  color:rgba(255, 255, 255, 0.8);
+}
+
+@media only screen and (max-width: 800px) {
+  .search {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .weather_box {
+    padding:0;
+    box-sizing: border-box;
+    min-width:calc(100vw - 60px);
+  }
+  .five_days_weather {
+    width: 100%;
+  }
+  .five_days_weather .day_weather {
+    width:100%;
+    margin-bottom:10px;
+    font-size:14px;
+  }
+
+  .current_weather {
+    background-size:144px;
+    padding-left:160px;
+    margin:30px 0;
+  }
+}

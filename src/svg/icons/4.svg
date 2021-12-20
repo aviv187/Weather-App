@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <g id="ic_weather_2" transform="translate(378 1273)">
+    <rect id="Rectangle_7" data-name="Rectangle 7" width="48" height="48" transform="translate(-378 -1273)" fill="#ffd2d2" opacity="0"/>
+    <g id="Group_18" data-name="Group 18" transform="translate(24.86 -1.12)">
+      <path id="Path_29" data-name="Path 29" d="M489.645,273.067a7.13,7.13,0,1,1-2.088-5.109,7.188,7.188,0,0,1,2.088,5.109Z" transform="translate(-853.754 -1522.308)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Path_30" data-name="Path 30" d="M489.38,283.43c0,4.3-3.859,7.786-8.49,7.786H459.549a8.49,8.49,0,0,1-8.422-7.313,7.359,7.359,0,0,1-.087-1.138,8.48,8.48,0,0,1,8.509-8.442,8.383,8.383,0,0,1,3.483.743c.3-4.052,3.994-7.255,8.48-7.255a9.049,9.049,0,0,1,3.213.589,8.581,8.581,0,0,1,1.09.5,7.193,7.193,0,0,0,11.133,9.088,7.867,7.867,0,0,1,.772.83A7.342,7.342,0,0,1,489.38,283.43Z" transform="translate(-852.9 -1522.377)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Line_77" data-name="Line 77" y2="3.328" transform="translate(-371.383 -1264.88)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Line_78" data-name="Line 78" x2="2.566" y2="2.354" transform="translate(-382.352 -1260.722)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Line_79" data-name="Line 79" x2="2.576" y2="2.354" transform="translate(-361.697 -1243.433)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Line_80" data-name="Line 80" x2="3.637" transform="translate(-359.497 -1250.679)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <line id="Line_81" data-name="Line 81" y1="2.354" x2="2.576" transform="translate(-362.98 -1260.722)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

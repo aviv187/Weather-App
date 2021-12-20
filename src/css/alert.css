@@ -1,0 +1,28 @@
+.alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: red;
+  border-radius: 5px;
+  padding: 20px 40px;
+  font-size: 14px;
+  color:#fff;
+  line-height: 22px;
+}
+
+.close_button {
+  font-weight: bolder;
+  margin: auto;
+  margin-top: 10px;
+  cursor: pointer;
+  width: fit-content;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 800px) {
+  .alert {
+    width: 90%;
+    box-sizing: border-box;
+  }
+}

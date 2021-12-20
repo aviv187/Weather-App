@@ -1,0 +1,55 @@
+
+header {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  color:#fff;
+}
+
+.header_title {
+  font-weight: bold;
+  font-size:24px;
+  text-transform: uppercase;
+}
+
+.header_buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 5px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+.header_buttons div {
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.header_buttons div.selected {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: auto;
+}
+
+.header_buttons .controls {
+  display:flex;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.header_buttons .controls .switch {
+  margin-left:16px;
+}
+.header_buttons .controls div:first-child {
+  margin-right:10px;
+}
+
+img.theme_svg {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  margin-top: 2px;
+}
