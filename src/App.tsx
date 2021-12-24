@@ -1,4 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setTempInFahrenheit } from './redux/tempInFahrenheit';
+import { setCurrentLocation } from './redux/currentLocation';
+import { setFavoriteLocations } from './redux/favoriteLocations';
+import { setAlertMessage } from './redux/alertMessage';
 
 import Favorites from './components/favorites';
 import Home from './components/home';
@@ -19,16 +25,14 @@ const metricStorageName = 'react_weather_app_metric';
 const demoDataStorageName = "react_weather_app_demo";
 
 const App: React.FC = () => {
+  const dispatch = useDispatch();
+
   const [darkMode, setDarkMode] = useState(false);
 
-  const [page, setPage] = useState<'home' | 'favorites'>('home');
-
-  const [currentLocation, setCurrentLocation] = useState<null | LocationData>(null);
-  const [favoriteLocations, setFavoriteLocations] = useState<LocationData[]>([]);
-
-  const [tempInFahrenheit, setTempInFahrenheit] = useState(true);
-
-  const [alertMessange, setAlertMessange] = useState<null | string>(null);
+  const pageName: 'home' | 'favorites' = useSelector((state: any) => state.pageName);
+  const tempInFahrenheit: boolean = useSelector((state: any) => state.tempInFahrenheit);
+  const favoriteLocations: LocationData[] = useSelector((state: any) => state.favoriteLocations);
+  const alertMessage: string | null = useSelector((state: any) => state.alertMessage);
 
   const isDemoData = useMemo(() => {
     return window.localStorage.getItem(demoDataStorageName) ? true : false;
@@ -42,14 +46,14 @@ const App: React.FC = () => {
         : await getLocationData("Tel Aviv");
 
       if (location) {
-        setCurrentLocation(location);
+        dispatch(setCurrentLocation(location));
       } else {
-        setAlertMessange('Sorry! We could not get the weather in Tel Aviv');
+        dispatch(setAlertMessage('Sorry! We could not get the weather in Tel Aviv'));
       }
     }
 
     getTelAvivData()
-  }, [isDemoData]);
+  }, [isDemoData, dispatch]);
 
   // get the favorite locations from the local storage
   useEffect(() => {
@@ -72,14 +76,14 @@ const App: React.FC = () => {
             newLocationData.currentWeather = newFiveDaysForecasts.currentWeather;
             newLocationData.currentDate = new Date().toLocaleDateString('en');
           } else {
-            setAlertMessange('Sorry! We could not get the new weather in ' + location.name + ', we only have the weather from the last time you connected');
+            dispatch(setAlertMessage('Sorry! We could not get the new weather in ' + location.name + ', we only have the weather from the last time you connected'));
           }
 
           favoriteLocationsData.push(newLocationData);
         }
       }
 
-      setFavoriteLocations(favoriteLocationsData);
+      dispatch(setFavoriteLocations(favoriteLocationsData));
     }
 
     const data = window.localStorage.getItem(favoritesStorageName);
@@ -87,7 +91,7 @@ const App: React.FC = () => {
     if (data) {
       getLocationNewData(data);
     }
-  }, [isDemoData])
+  }, [isDemoData, dispatch])
 
   // save favorite locations in the local storage
   useEffect(() => {
@@ -122,9 +126,9 @@ const App: React.FC = () => {
     const metric = window.localStorage.getItem(metricStorageName);
 
     if (metric === 'celcius') {
-      setTempInFahrenheit(false);
+      dispatch(setTempInFahrenheit(false));
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     window.localStorage.setItem(metricStorageName, tempInFahrenheit ? 'farenheit' : 'celcius');
@@ -135,36 +139,23 @@ const App: React.FC = () => {
       <Header
         darkMode={darkMode}
         setDarkMode={setDarkMode}
-        page={page}
-        setPage={setPage}
         tempInFahrenheit={tempInFahrenheit}
-        setTempInFahrenheit={setTempInFahrenheit}
         isDemoData={isDemoData}
       />
 
-      <div className={`content ${page === 'favorites' ? 'favorites' : 'home'}Page`}>
+      <div className={`content ${pageName === 'favorites' ? 'favorites' : 'home'}Page`}>
         <div className='container'>
           <Home
-            tempInFahrenheit={tempInFahrenheit}
-            setAlertMessange={setAlertMessange}
-            currentLocation={currentLocation}
-            setCurrentLocation={setCurrentLocation}
-            setFavoriteLocations={setFavoriteLocations}
-            isFavorite={favoriteLocations.some((loc) => {
-              return loc.id === currentLocation?.id
-            })}
             isDemoData={isDemoData}
           />
         </div>
         <div className='container'>
           <Favorites
             tempInFahrenheit={tempInFahrenheit}
-            setPage={setPage}
-            setCurrentLocation={setCurrentLocation}
             favoriteCities={favoriteLocations} />
         </div>
       </div>
-      {alertMessange && <Alert text={alertMessange} closeFunc={() => setAlertMessange(null)} />}
+      {alertMessage && <Alert />}
     </div>
   );
 }

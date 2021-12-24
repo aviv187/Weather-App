@@ -1,4 +1,6 @@
 import React, { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFavoriteLocations } from '../redux/favoriteLocations';
 
 import '../css/currentWeatherBox.css';
 
@@ -9,34 +11,31 @@ import { LocationData } from '../modules/location';
 
 import fahrenheitToCelsius from '../helpers/fahrenheitToCelsius';
 
-interface CurrentWeatherBoxProps {
-  currentLocation: LocationData;
-  isFavorite: boolean;
-  setFavoriteLocations: React.Dispatch<React.SetStateAction<LocationData[]>>
-  tempInFahrenheit: boolean;
-}
+const CurrentWeatherBox: React.FC = () => {
+  const dispatch = useDispatch();
 
-const CurrentWeatherBox: React.FC<CurrentWeatherBoxProps> = ({ currentLocation, isFavorite, setFavoriteLocations, tempInFahrenheit }) => {
+  const currentLocation: LocationData = useSelector((state: any) => state.currentLocation);
+  const favoriteLocations: LocationData[] = useSelector((state: any) => state.favoriteLocations);
+  const tempInFahrenheit: boolean = useSelector((state: any) => state.tempInFahrenheit);
+
   const currentDay = useMemo(() => {
     return currentLocation?.fiveDaysForecasts[0];
   }, [currentLocation])
 
   const addOrDeleteFromFavorite = () => {
-    setFavoriteLocations(oldArr => {
-      const newArr = [...oldArr];
+    const favoriteLocationsData = [...favoriteLocations];
 
-      if (!isFavorite) {
-        newArr.push(currentLocation!);
-      } else {
-        const index = newArr.findIndex(item => {
-          return item.id === currentLocation!.id;
-        })
+    if (!favoriteLocations.includes(currentLocation)) {
+      favoriteLocationsData.push(currentLocation!);
+    } else {
+      const index = favoriteLocationsData.findIndex(item => {
+        return item.id === currentLocation!.id;
+      })
 
-        newArr.splice(index, 1);
-      }
+      favoriteLocationsData.splice(index, 1);
+    }
 
-      return newArr;
-    })
+    dispatch(setFavoriteLocations(favoriteLocationsData));
   };
 
   return <div className='weather_box'>
@@ -50,7 +49,7 @@ const CurrentWeatherBox: React.FC<CurrentWeatherBoxProps> = ({ currentLocation, 
       <img
         onClick={addOrDeleteFromFavorite}
         className='heart_icon'
-        src={isFavorite ? full_heart_icon : heart_icon}
+        src={favoriteLocations.includes(currentLocation) ? full_heart_icon : heart_icon}
         alt='' />
     </div>
 

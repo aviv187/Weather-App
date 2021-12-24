@@ -1,17 +1,19 @@
 import React from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setAlertMessage } from '../redux/alertMessage';
+
 import '../css/alert.css';
 
-interface AlertProps {
-  text: string;
-  closeFunc: Function;
-}
+const Alert: React.FC = () => {
+  const dispatch = useDispatch();
 
-const Alert: React.FC<AlertProps> = ({ text, closeFunc }) => {
+  const alertMessage: string | null = useSelector((state: any) => state.alertMessage);
+
   return (
     <div className='alert'>
-      {text}
-      <div className='close_button' onClick={() => closeFunc()}>OK</div>
+      {alertMessage}
+      <div className='close_button' onClick={() => dispatch(setAlertMessage(null))}>OK</div>
     </div>
   );
 }

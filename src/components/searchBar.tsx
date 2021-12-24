@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { setCurrentLocation } from '../redux/currentLocation';
+import { setAlertMessage } from '../redux/alertMessage';
+
 
 import '../css/searchBar.css';
 
 import search_icon from '../svg/search.svg';
 
-import { LocationData, LocationSearchData } from '../modules/location';
+import { LocationSearchData } from '../modules/location';
 
 import getLocationID from '../helpers/getLocationId';
 import getFiveDaysForecasts from '../helpers/getFiveDaysWeather';
@@ -17,12 +22,12 @@ declare global {
 }
 
 interface SearchBarProps {
-  setCurrentLocation: React.Dispatch<React.SetStateAction<LocationData | null>>
-  setAlertMessange: React.Dispatch<React.SetStateAction<string | null>>
   isDemoData: boolean;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ setCurrentLocation, setAlertMessange, isDemoData }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ isDemoData }) => {
+  const dispatch = useDispatch()
+
   const [locations, setLocations] = useState<LocationSearchData[]>([]);
 
   const [showSearchResults, setShowSearchResults] = useState(false);
@@ -58,9 +63,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ setCurrentLocation, setAlertMessa
     if (locationData) {
       const finalData = { ...locationData, ...location, currentDate: new Date().toLocaleDateString('en') };
 
-      setCurrentLocation(finalData);
+      dispatch(setCurrentLocation(finalData));
     } else {
-      setAlertMessange('Sorry, we could not find the weather in ' + location.name);
+      dispatch(setAlertMessage('Sorry, we could not find the weather in ' + location.name))
     }
   }
 

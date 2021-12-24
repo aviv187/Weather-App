@@ -1,24 +1,28 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setCurrentLocation } from '../redux/currentLocation';
 
 import '../css/favorites.css';
 
 import { LocationData } from '../modules/location';
 
 import fahrenheitToCelsius from '../helpers/fahrenheitToCelsius';
+import { setPageName } from '../redux/page';
 
 
 interface FavoritesProps {
   favoriteCities: LocationData[];
-  setCurrentLocation: React.Dispatch<React.SetStateAction<LocationData | null>>
-  setPage: React.Dispatch<React.SetStateAction<"favorites" | "home">>
   tempInFahrenheit: boolean;
 }
 
-const Favorites: React.FC<FavoritesProps> = ({ favoriteCities, setCurrentLocation, setPage, tempInFahrenheit }) => {
+const Favorites: React.FC<FavoritesProps> = ({ favoriteCities, tempInFahrenheit }) => {
+  const dispatch = useDispatch();
+
   const selectLocation = (city: LocationData) => {
-    setCurrentLocation(city);
-    setPage('home');
+    dispatch(setCurrentLocation(city));
+    dispatch(setPageName('home'));
   }
+
 
   return (
     <div className="favorites">

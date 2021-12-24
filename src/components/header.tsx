@@ -1,4 +1,8 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPageName } from '../redux/page';
+import { setTempInFahrenheit } from '../redux/tempInFahrenheit';
+
 
 import sun_icon from '../svg/sun.svg'
 import moon_icon from '../svg/moon.svg'
@@ -10,30 +14,31 @@ const demoDataStorageName = "react_weather_app_demo";
 interface HeaderProps {
   darkMode: boolean;
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
-  page: "home" | "favorites";
-  setPage: React.Dispatch<React.SetStateAction<"home" | "favorites">>;
   tempInFahrenheit: boolean;
-  setTempInFahrenheit: React.Dispatch<React.SetStateAction<boolean>>;
   isDemoData: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ darkMode, setDarkMode, page, setPage, tempInFahrenheit, setTempInFahrenheit, isDemoData }) => {
+const Header: React.FC<HeaderProps> = ({ darkMode, setDarkMode, tempInFahrenheit, isDemoData }) => {
+  const dispatch = useDispatch();
+
+  const pageName: 'home' | 'favorites' = useSelector((state: any) => state.pageName);
+
   return (
     <header>
       <div className='header_title'>Abra Weather Task</div>
       <div className='header_buttons'>
         <div
-          className={page === 'home' ? 'selected' : ''}
-          onClick={() => setPage('home')}
+          className={pageName === 'home' ? 'selected' : ''}
+          onClick={() => dispatch(setPageName('home'))}
         >Home</div>
         <div
-          className={page === 'favorites' ? 'selected' : ''}
-          onClick={() => setPage('favorites')}
+          className={pageName === 'favorites' ? 'selected' : ''}
+          onClick={() => dispatch(setPageName('favorites'))}
         >Favorites</div>
 
         <div className='controls'>
 
-          <div onClick={() => setTempInFahrenheit(!tempInFahrenheit)}>{tempInFahrenheit ? 'F' : 'C'}°</div>
+          <div onClick={() => dispatch(setTempInFahrenheit(!tempInFahrenheit))}>{tempInFahrenheit ? 'F' : 'C'}°</div>
 
           <img
             className='theme_svg'

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import Loader from './loader';
 import SearchBar from './searchBar';
@@ -8,30 +9,17 @@ import { LocationData } from '../modules/location';
 import CurrentWeatherBox from './currentWeatherBox';
 
 interface HomeProps {
-  currentLocation: LocationData | null;
-  isFavorite: boolean;
-  setFavoriteLocations: React.Dispatch<React.SetStateAction<LocationData[]>>
-  setCurrentLocation: React.Dispatch<React.SetStateAction<LocationData | null>>
-  setAlertMessange: React.Dispatch<React.SetStateAction<string | null>>
-  tempInFahrenheit: boolean;
   isDemoData: boolean;
 }
 
-const Home: React.FC<HomeProps> = ({ currentLocation, isFavorite, setFavoriteLocations, setCurrentLocation, setAlertMessange, tempInFahrenheit, isDemoData }) => {
+const Home: React.FC<HomeProps> = ({ isDemoData }) => {
+  const currentLocation: null | LocationData = useSelector((state: any) => state.currentLocation);
+
   return (
     <>
-      <SearchBar
-        setCurrentLocation={setCurrentLocation}
-        setAlertMessange={setAlertMessange}
-        isDemoData={isDemoData}
-      />
+      <SearchBar isDemoData={isDemoData} />
       {currentLocation
-        ? <CurrentWeatherBox
-          currentLocation={currentLocation}
-          isFavorite={isFavorite}
-          setFavoriteLocations={setFavoriteLocations}
-          tempInFahrenheit={tempInFahrenheit}
-        />
+        ? <CurrentWeatherBox />
         : <Loader />
       }
     </>
